@@ -14,14 +14,19 @@ var margin = {
   var width = svgWidth - margin.left - margin.right;
 
   // csv data
-  d3.csv("data.csv").then(function(medalData) {
+  d3.csv("data.csv").then(function(stateData) {
 
     // create date parser
-    var dateParser = d3.timeParse("%d-%b");
+    // var dateParser = d3.timeParse("%d-%b");
 
     // parse data
-    medalData.forEach(function(data) {
-      data.date = dateParser(data.date);
-      data.medals = +data.medals;
+    stateData.forEach(function(data) {
+        data.poverty = +data.poverty;
+        data.age = +data.age;
+        data.healthcare = +data.healthcare;
+        data.income = +data.income;
+        data.obesity = +data.obesity;
     });
+
+    
   })
