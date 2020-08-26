@@ -1,7 +1,7 @@
 
 // SVG wrapper dimensions are determined by the current width
 // and height of the browser window.
-var svgWidth = 1200;
+var svgWidth = 960;
 var svgHeight = 660;
 
 var margin = {
@@ -70,7 +70,7 @@ d3.csv("data/data.csv").then(function (stateData) {
 
     var xLinearScale = d3.scaleLinear()
         .domain([0, d3.max(stateData, d => d.poverty)])
-        .range([height, 0]);
+        .range([width, 0]);
 
     var yLinearScale = d3.scaleLinear()
         .domain([0, d3.max(stateData, d => d.age)])
@@ -148,8 +148,8 @@ d3.csv("data/data.csv").then(function (stateData) {
 
     chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
-        .attr("class", "axisText")
-        .attr("x", 0 + margin.left - 20)
+        .attr("class", "stateText")
+        .attr("x", 0 + margin.right - 2)
         .attr("y", 0 - (width / 20))
         // .attr("value", "hair_length") // value to grab for event listener
         // .classed("active", true)
