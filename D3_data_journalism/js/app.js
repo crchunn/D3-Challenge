@@ -99,15 +99,22 @@ d3.csv("data/data.csv").then(function (stateData) {
         // .attr("cx", d => xLinearScale(d.healthcare))
         // .attr("cx", d => xLinearScale(d.income))
         .attr("cy", d => yLinearScale(d.age))
-        .attr("cy", d => yLinearScale(d.smokes))
-        .attr("cy", d => yLinearScale(d.obesity))
+        // .attr("cy", d => yLinearScale(d.smokes))
+        // .attr("cy", d => yLinearScale(d.obesity))
         .attr("r", "15")
         .attr("fill", "aqua")
         .attr("opacity", ".5");
 
     // setting up tooltip
     var toolTip = d3.tip()
-        .attr("class", "tooltip")
+        .attr("class", "d3-tip")
+        // var tooltip = d3.select("body")
+        // .append("div")
+        // .attr("id", "mytooltip")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        // .style("visibility", "hidden")
+        //  .text("a simple tooltip");
         .offset([80, -60])
         .html(function (d) {
             return (`${d.abbr}<br>Poverty: ${d.poverty}<br>Age: ${d.age}`);
@@ -117,19 +124,24 @@ d3.csv("data/data.csv").then(function (stateData) {
     chartGroup.call(toolTip);
 
     // set up the bugs
-
-    circlesGroup.on("click", function (data) {
-        toolTip.hide(data);
-    })
+    // on
+    circlesGroup.on("mouseover", function(data) {
+         toolTip.show(data, this);
+     }) 
+    // off
+    /* circlesGroup.on("mouseover", function () {
+        return toolTip.style("top", (d3.event.pageY - 10) + "px")
+            .style("left", (d3.event.pageX + 10) + "px") */
+    
         .on("mouseout", function (data, index) {
-            toolTip.hide(data);
-        });
+        toolTip.hide(data);
+    });
 
     // label it
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left + 40)
-        .attr("x", 0 - (height / 2))
+        .attr("y", 0 - margin.left - 40)
+         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .attr("class", "axisText")
         .text("Poverty");
@@ -137,7 +149,9 @@ d3.csv("data/data.csv").then(function (stateData) {
     chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
         .attr("class", "axisText")
+       
         .text("Age");
+
 }).catch(function (error) {
     console.log(error);
 })
