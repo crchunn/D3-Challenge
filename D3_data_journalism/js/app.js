@@ -125,23 +125,23 @@ d3.csv("data/data.csv").then(function (stateData) {
 
     // set up the bugs
     // on
-    circlesGroup.on("mouseover", function(data) {
-         toolTip.show(data, this);
-     }) 
-    // off
-    /* circlesGroup.on("mouseover", function () {
-        return toolTip.style("top", (d3.event.pageY - 10) + "px")
-            .style("left", (d3.event.pageX + 10) + "px") */
-    
+    circlesGroup.on("mouseover", function (data) {
+        toolTip.show(data, this);
+    })
+        // off
+        /* circlesGroup.on("mouseover", function () {
+            return toolTip.style("top", (d3.event.pageY - 10) + "px")
+                .style("left", (d3.event.pageX + 10) + "px") */
+
         .on("mouseout", function (data, index) {
-        toolTip.hide(data);
-    });
+            toolTip.hide(data);
+        });
 
     // label it
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left - 40)
-         .attr("x", 0 - (height / 2))
+        .attr("y", 0 - margin.left + 10)
+        .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .attr("class", "axisText")
         .text("Poverty");
@@ -149,7 +149,13 @@ d3.csv("data/data.csv").then(function (stateData) {
     chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
         .attr("class", "axisText")
-       
+        .attr("x", 0 + margin.left - 20)
+        .attr("y", 0 - (width / 20))
+        // .attr("value", "hair_length") // value to grab for event listener
+        // .classed("active", true)
+        // .text("Hair Metal Ban Hair Length (inches)");
+
+
         .text("Age");
 
 }).catch(function (error) {
