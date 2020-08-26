@@ -23,10 +23,12 @@ var svg = d3
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+// BONUS ATTEMPT
 // everyone needs parameters
-var chosenXAxis = "poverty";
+// var chosenXAxis = "poverty";
 
-function xScale(stateData, chosenXAxis) {
+/* function xScale(stateData, chosenXAxis) {
+
     var xLinearScale = d3.scaleLinear()
         .domain([d3.min(stateData, d => d[chosenXAxis]) * 0.8,
             d3.max(stateData, d => d[chosenXAxis]) * 1.2
@@ -34,6 +36,7 @@ function xScale(stateData, chosenXAxis) {
         .range([0, width]);
     return xLinearScale;
 }
+// setting up an axis
 function renderAxes(newXScale, xAxis) {
     var bottomAxis = d3.axisBottom(newXScale);
 
@@ -43,11 +46,12 @@ function renderAxes(newXScale, xAxis) {
 
     return xAxis;
 }
-
+// setting up a circle
+fuction renderCircles */
 
 // csv data
-d3.csv("data/data.csv").then(function (stateData, err) {
-    if (err) throw err;
+d3.csv("data/data.csv").then(function (stateData) {
+    // if (err) throw err;
 
     // create date parser
     // var dateParser = d3.timeParse("%d-%b");
@@ -64,7 +68,9 @@ d3.csv("data/data.csv").then(function (stateData, err) {
 
     // setting up the scale
 
-
+    var xLinearScale = d3.scaleLinear()
+        .domain([0, d3.max(stateData, d => d.poverty)])
+        .range([height, 0]);
 
     var yLinearScale = d3.scaleLinear()
         .domain([0, d3.max(stateData, d => d.age)])
@@ -76,11 +82,12 @@ d3.csv("data/data.csv").then(function (stateData, err) {
 
     // appendig the axes
 
+    chartGroup.append("g")
+        .attr("transform", `translate(0, ${height})`)
+        .call(bottomAxis);
 
-    // .call(bottomAxis);
-
-    // chartGroup.append("g")
-    // .call(leftAxis);
+    chartGroup.append("g")
+        .call(leftAxis);
 
     // making the donuts
 
