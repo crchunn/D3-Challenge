@@ -70,7 +70,7 @@ d3.csv("data/data.csv").then(function (stateData) {
 
     var xLinearScale = d3.scaleLinear()
         .domain([0, d3.max(stateData, d => d.poverty)])
-        .range([width, 0]);
+        .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
         .domain([0, d3.max(stateData, d => d.age)])
@@ -102,7 +102,7 @@ d3.csv("data/data.csv").then(function (stateData) {
         // .attr("cy", d => yLinearScale(d.smokes))
         // .attr("cy", d => yLinearScale(d.obesity))
         .attr("r", "15")
-        .attr("fill", "aqua")
+        .attr("fill", "blue")
         .attr("opacity", ".5");
 
     // setting up tooltip
