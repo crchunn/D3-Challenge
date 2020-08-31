@@ -105,7 +105,17 @@ d3.csv("data/data.csv").then(function (stateData) {
         .attr("fill", "tan ")
         .attr("opacity", ".5")
 
-        // .text(d.abbr);
+    var textGroup = chartGroup.selectAll("text.state")
+        .data(healthdata)
+        .enter()
+        .append("text")
+        .attr("class", "state")
+        .text(d => d.abbr)
+        .attr("dx", d => xLinearScale(d.poverty))
+        .attr("dy", d => yLinearScale(d.age))
+        .style("text-anchor", "middle")
+
+    // .text(d.abbr);
 
     // setting up tooltip
     var toolTip = d3.tip()
