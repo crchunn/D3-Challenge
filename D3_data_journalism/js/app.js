@@ -104,14 +104,12 @@ d3.csv("data/data.csv").then(function (stateData) {
         .attr("r", "15")
         .attr("fill", "blue")
         .attr("opacity", ".5")
-        .text(d => d.abbr);
+
+        // .text(d.abbr);
 
     // setting up tooltip
     var toolTip = d3.tip()
         .attr("class", "d3-tip")
-        // var tooltip = d3.select("body")
-        // .append("div")
-        // .attr("id", "mytooltip")
         .style("position", "absolute")
         .style("z-index", "10")
         // .style("visibility", "hidden")
@@ -145,20 +143,15 @@ d3.csv("data/data.csv").then(function (stateData) {
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .attr("class", "axisText")
-        .text("Poverty");
+        .text("% in Poverty");
 
     chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
         .attr("class", "stateText")
         .attr("x", 0 + margin.right - 2)
         .attr("y", 0 - (width / 20))
-        // .attr("value", "hair_length") // value to grab for event listener
-        // .classed("active", true)
-        // .text("Hair Metal Ban Hair Length (inches)");
-
-
-        .text("Age");
+        .text("Average Age");
 
 }).catch(function (error) {
     console.log(error);
-})
+});
