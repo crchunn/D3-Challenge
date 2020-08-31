@@ -102,7 +102,7 @@ d3.csv("data/data.csv").then(function (stateData) {
         // .attr("cy", d => yLinearScale(d.smokes))
         // .attr("cy", d => yLinearScale(d.obesity))
         .attr("r", "15")
-        .attr("fill", "blue")
+        .attr("fill", "tan")
         .attr("opacity", ".5")
 
         // .text(d.abbr);
