@@ -103,7 +103,8 @@ d3.csv("data/data.csv").then(function (stateData) {
         // .attr("cy", d => yLinearScale(d.obesity))
         .attr("r", "15")
         .attr("fill", "blue")
-        .attr("opacity", ".5");
+        .attr("opacity", ".5")
+        .text(d => d.abbr);
 
     // setting up tooltip
     var toolTip = d3.tip()
@@ -117,7 +118,7 @@ d3.csv("data/data.csv").then(function (stateData) {
         //  .text("a simple tooltip");
         .offset([80, -60])
         .html(function (d) {
-            return (`${d.abbr}<br>Poverty: ${d.poverty}<br>Age: ${d.age}`);
+            return (`${d.abbr}<br>Poverty: ${d.poverty}<br>Age: ${d.age}<br>Income: ${d.income}<br>Healthcare: ${d.healthcare}<br>Smokes: ${d.smokes}<br>Obesity: ${d.obesity}`);
         });
 
     // put tooltip in chart
