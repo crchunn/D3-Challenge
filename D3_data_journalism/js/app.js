@@ -105,7 +105,7 @@ d3.csv("data/data.csv").then(function (stateData) {
         .attr("fill", "tan ")
         .attr("opacity", ".5")
 
-    var textGroup = chartGroup.selectAll("text.state")
+  /*   var textGroup = chartGroup.selectAll("text.state")
         .data(healthdata)
         .enter()
         .append("text")
@@ -114,7 +114,8 @@ d3.csv("data/data.csv").then(function (stateData) {
         .attr("dx", d => xLinearScale(d.poverty))
         .attr("dy", d => yLinearScale(d.age))
         .style("text-anchor", "middle")
-
+ */
+    // circlesGroup = renderCircles(circlesGroup, textGroup, xLinearScale, chosenXAxis);
     // .text(d.abbr);
 
     // setting up tooltip
@@ -137,6 +138,7 @@ d3.csv("data/data.csv").then(function (stateData) {
     circlesGroup.on("mouseover", function (data) {
         toolTip.show(data, this);
     })
+
         // off
         /* circlesGroup.on("mouseover", function () {
             return toolTip.style("top", (d3.event.pageY - 10) + "px")
@@ -147,6 +149,7 @@ d3.csv("data/data.csv").then(function (stateData) {
         });
 
     // label it
+
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 0 - margin.left + 10)
